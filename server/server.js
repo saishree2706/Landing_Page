@@ -19,12 +19,7 @@ mongoose.connect(`${MONGO_URI}`, {
 .then(() => console.log('✅ Connected to MongoDB'))
 .catch(err => console.error('❌ MongoDB connection error:', err));
 
-app.use(cors({
-  origin: ["landing-page-silk-three-48.vercel.app"],
-        methods: ["POST", "GET"],
-        credentials: true
-
-}));
+app.use(cors());
 app.use(express.json());
 
 app.use('/send-email', emailRoutes); // ✅ This registers your POST /send-email routes')
