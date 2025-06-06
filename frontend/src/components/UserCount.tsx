@@ -13,7 +13,7 @@ const UserCount: React.FC<Props> = ({ refreshSignal }) => {
   const fetchUserCount = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`{API_BASE_URL}/user/count`);
+      const res = await fetch(`${API_BASE_URL}/user/count`);
       const data = await res.json();
       setCount(data.totalUsers);
     } catch (error) {
