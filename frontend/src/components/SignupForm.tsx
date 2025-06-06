@@ -12,7 +12,7 @@ interface FormData {
 interface SignupFormProps {
     onSubmitSuccess: () => void;
 }
-const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:5000";
+const API_BASE_URL = import.meta.env.VITE_BACKEND_API_URL;
 const SignupForm: React.FC<SignupFormProps> = ({ onSubmitSuccess }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);

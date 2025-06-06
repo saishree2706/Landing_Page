@@ -6,9 +6,10 @@ import mongoose from 'mongoose'; // ✅ Import mongoose for MongoDB connection
 const app = express();
 const PORT = process.env.PORT ||5000;
 import userRoutes from './routes/userRoute.js'; // ✅ Import user routes
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
 
 // ✅ Connect to local MongoDB
-mongoose.connect('mongodb://localhost:27017/emailDB', {
+mongoose.connect(`mongodb+srv://admin:admin123@landingpage.fbj1ueb.mongodb.net/?retryWrites=true&w=majority&appName=landingPage`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
