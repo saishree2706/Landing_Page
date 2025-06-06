@@ -12,7 +12,7 @@ interface FormData {
 interface SignupFormProps {
     onSubmitSuccess: () => void;
 }
-
+const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:5000";
 const SignupForm: React.FC<SignupFormProps> = ({ onSubmitSuccess }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -36,7 +36,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSubmitSuccess }) => {
             // Assuming data.email contains the email ID
             const fetchUserByEmail = async () => {
                 try {
-                    const userResponse = await fetch(`http://localhost:5000/user/${encodeURIComponent(data.email)}`, {
+                    const userResponse = await fetch(`${API_BASE_URL}/user/${encodeURIComponent(data.email)}`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json", // <<< THIS IS CRUCIAL
@@ -47,7 +47,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSubmitSuccess }) => {
                     if (!isUserFound.success) {
                         try {
                             async function sendEmail() {
-                                const response = await fetch("http://localhost:5000/send-email", {
+                                const response = await fetch(`${API_BASE_URL}/send-email`, {
                                     method: "POST",
                                     headers: {
                                         "Content-Type": "application/json", // <<< THIS IS CRUCIAL

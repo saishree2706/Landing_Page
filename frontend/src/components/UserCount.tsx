@@ -4,6 +4,7 @@ import { FaUsers } from 'react-icons/fa';
 type Props = {
   refreshSignal?: boolean;
 };
+const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:5000";
 
 const UserCount: React.FC<Props> = ({ refreshSignal }) => {
   const [count, setCount] = useState<number | null>(null);
@@ -12,7 +13,7 @@ const UserCount: React.FC<Props> = ({ refreshSignal }) => {
   const fetchUserCount = async () => {
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:5000/user/count');
+      const res = await fetch(`{API_BASE_URL}/count`);
       const data = await res.json();
       setCount(data.totalUsers);
     } catch (error) {
