@@ -20,7 +20,7 @@ mongoose.connect(`${MONGO_URI}`, {
 .catch(err => console.error('❌ MongoDB connection error:', err));
 
 app.use(cors({
-  origin: [""],
+  origin: ["landing-page-silk-three-48.vercel.app"],
         methods: ["POST", "GET"],
         credentials: true
 
