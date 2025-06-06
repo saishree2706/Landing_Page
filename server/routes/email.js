@@ -2,7 +2,7 @@
 import express from "express";
 import { Resend } from "resend";
 const router = express.Router();
-const resend = new Resend("re_3fLV2W1g_PZnn8ZC6u1LgVNTTKJB9g9rQ");
+const resend = new Resend(process.env.RESEND_API);
 import User from "../models/User.js"; // ✅ Import your User model
 import axios from "axios";
 router.post("/", async (req, res) => {
@@ -10,13 +10,13 @@ router.post("/", async (req, res) => {
     const { from, to, subject, html, userNameEntered } = req.body;
     console.log("Request body:", from, to, subject, html, userNameEntered);
     try {
-        const emailResponse = "hi";
-        // const emailResponse = await resend.emails.send({
-        //   from: "onboarding@resend.dev",
-        //   to: "venkata.saishree@replicon.com",
-        //   subject: "Test Email from Resend",
-        //   html: "<b>HI SAI</b>",
-        // });
+        // const emailResponse = "hi";
+        const emailResponse = await resend.emails.send({
+          from: "onboarding@resend.dev",
+          to: "venkata.saishree@replicon.com",
+          subject: "Test Email from Resend",
+          html: "<b>HI SAI</b>",
+        });
         // 2. Save to DB
         const userID = Date.now().toString(); // or use uuid
         const newUser = new User({ userName: userNameEntered, userEmail: to, userID: userID });
